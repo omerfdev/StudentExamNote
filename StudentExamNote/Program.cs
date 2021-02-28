@@ -6,6 +6,7 @@ namespace StudentExamNote
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("{0:r}", DateTime.Now);
             int exam1, final, average;
             Console.Write("Please Enter First Exam Note: ");
             exam1 = Convert.ToInt32(Console.ReadLine());
