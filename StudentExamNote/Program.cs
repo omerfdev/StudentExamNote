@@ -6,22 +6,41 @@ namespace StudentExamNote
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("{0:r}", DateTime.Now);
-            int exam1, final, average;
-            Console.Write("Please Enter First Exam Note: ");
-            exam1 = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Please Enter Final Note: ");
-            final = Convert.ToInt32(Console.ReadLine());
-            average = Convert.ToInt32(exam1 * 0.4 + final * 0.6);
-            Console.WriteLine();
+
+            double average=PointCalculate();
+            average= Math.Round(average); 
+
             Console.WriteLine("Average = {0}", average);
-            Console.WriteLine();
-            if (average < 50 || final < 50)
-                Console.WriteLine("You Fail.");
+            if (average < 50 )
+                Console.WriteLine("You Failed");
             else
                 Console.WriteLine("You Passed.");
 
             Console.ReadKey();
         }
+
+        private static double PointCalculate()
+        {
+            Console.WriteLine("\t" + "{0:r}", DateTime.Now);
+            double firstExam = 0; double final = 0; double average = 0;
+
+            try
+            {
+                Console.Write("Please Enter First Exam Note: ");
+                firstExam = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Please Enter Final Note: ");
+                final = Convert.ToInt32(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.Clear();
+                PointCalculate();
+                Console.WriteLine("Wrong Format Type" + ex.Message);
+            }
+            finally { average = (firstExam * 0.4) + (final * 0.6); }
+                return average; 
+
+        }
+
     }
 }
